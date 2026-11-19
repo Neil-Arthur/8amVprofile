@@ -46,10 +46,7 @@ pipeline {
             }
         } 
         stage('CODE ANALYSIS with SONARQUBE') {
-              tools {
-                // Replace 'jdk21' with the exact JDK name from Manage Jenkins > Tools
-                //jdk 'jdk21'
-    }
+            
 		  environment {
             // Optional: Uncomment and set the path below if your agent doesn't use Jenkins' Tools config
              JAVA_HOME = '/usr/lib/jvm/java-21-openjdk-amd64'
