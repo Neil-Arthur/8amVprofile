@@ -46,15 +46,23 @@ pipeline {
             }
         } 
         stage('CODE ANALYSIS with SONARQUBE') {
-          
+              tools {
+        // Replace 'jdk21' with the exact JDK name from Manage Jenkins > Tools
+        jdk 'jdk21'
+    }
 		  environment {
+            // Optional: Uncomment and set the path below if your agent doesn't use Jenkins' Tools config
+            // JAVA_HOME = '/usr/lib/jvm/java-21-openjdk-amd64'
+            // PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
              scannerHome = tool "${SONARSCANNER}"
           }
-              tools {
-        jdk 'jdk21' // Name configured under Manage Jenkins > Tools
-    }
                     steps {
             withSonarQubeEnv("${SONARSERVER}") {
+                sh '''
+                echo "Active JAVA_HOME: $JAVA_HOME"
+                java -version
+                ${scannerHome}/bin/sonar-scanner -X
+                    '''
                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
