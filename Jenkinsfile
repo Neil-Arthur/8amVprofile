@@ -49,6 +49,10 @@ pipeline {
           
 		  environment {
              scannerHome = tool "${SONARSCANNER}"
+             echo "JAVA_HOME is: $JAVA_HOME"
+            which java
+            java -version
+
           }
                     steps {
             withSonarQubeEnv("${SONARSERVER}") {
