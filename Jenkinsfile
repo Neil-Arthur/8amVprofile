@@ -49,11 +49,10 @@ pipeline {
           
 		  environment {
              scannerHome = tool "${SONARSCANNER}"
-             echo "JAVA_HOME is: $JAVA_HOME"
-            which java
-            java -version
-
           }
+              tools {
+        jdk 'jdk21' // Name configured under Manage Jenkins > Tools
+    }
                     steps {
             withSonarQubeEnv("${SONARSERVER}") {
                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
