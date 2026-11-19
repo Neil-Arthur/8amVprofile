@@ -55,11 +55,6 @@ pipeline {
           }
                     steps {
             withSonarQubeEnv("${SONARSERVER}") {
-                sh '''
-                echo "Active JAVA_HOME: $JAVA_HOME"
-                java -version
-                ${scannerHome}/bin/sonar-scanner -X
-                    '''
                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
