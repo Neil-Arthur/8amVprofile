@@ -75,7 +75,7 @@ pipeline {
         } 
         stage ('uploadArtifact') {
             steps {
-                echo "Resolved Credential ID: '${env.NEXUS_LOGIN}'"
+                echo "Resolved Credential ID Neil: '${env.NEXUS_LOGIN}'"
 
                 nexusArtifactUploader(
                 nexusVersion: 'nexus3',
